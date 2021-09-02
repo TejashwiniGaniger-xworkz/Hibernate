@@ -14,4 +14,5 @@ public interface CameraDAO {
 	void delete(int id);
 
 	void saveList(List<CameraEntity> entity);
+	void deleteList(List<Integer> entity);
 }

@@ -76,13 +76,32 @@ public class CameraDAOImpl implements CameraDAO {
 
 	@Override
 	public void saveList(List<CameraEntity> entity) {
-
-		List<CameraEntity> result = new ArrayList<CameraEntity>();
-		for (CameraEntity camentities : result) {
-			result.addAll(entity);
-			
+		try (Session session = factory.openSession()) {
+			Transaction tr = session.beginTransaction();
+			entity.forEach(entities -> {
+				session.save(entities);
+				System.out.println(entities);
+			});
+			tr.commit();
 		}
-
 	}
 
+
+	@Override
+	public void deleteList(List<Integer> entity) {
+
+		try (Session session = factory.openSession()) {
+			Transaction tr = session.beginTransaction();
+			entity.forEach(entities -> {
+				CameraEntity cam = session.get(CameraEntity.class, entities);
+				if (entity.contains(entities)) {
+					session.delete(cam);
+					System.out.println(cam);
+				}
+
+			});
+			tr.commit();
+
+		}
+	}
 }

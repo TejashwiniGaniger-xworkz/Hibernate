@@ -20,12 +20,7 @@ public class CameraSaveTester {
 		List<CameraEntity> cam = new ArrayList<CameraEntity>();
 		System.out.println("Save List");
 		cam.add(entity);
-		for (CameraEntity camentity : cam) {
-			System.out.println(cam);
-		}
-
-		dao.saveList(null);
-
+		
 	}
 
 }
